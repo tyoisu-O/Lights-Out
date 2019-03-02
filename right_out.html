@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>right_out</title>
+    <link rel="stylesheet" href="{{url_for('static',filename='right_out.css')}}">
+</head>
+
+<body>
+    <form action="{{url_for('right_out')}}" method="POST">
+        {% if not block_data %}
+        <h1 class="tital">Let's ライツアウト</h1>
+        <select name="num">
+            <option value=3>3×3</option>
+            <option value=4>4×4</option>
+            <option value=5>5×5</option>
+            <option value=6>6×6</option>
+            <option value=7>7×7</option>
+        </select>
+        <div class="start">
+            <button>start!</button>
+        </div>
+        {% elif not clear %}
+        <h1>黒<span style="color: rgb(218, 105, 53)">に染めろ!!</span></h1>
+        <div class="main_block">
+            {% for i in range(block_data | count) %}
+            {% for j in range(block_data | count) %}
+            {% if block_data[i][j] %}
+
+            <button name="block" value={{i}} ${{j}} style="padding: 30px; background-color: white;"></button>
+            {% else %}
+            <button name="block" value={{i}} ${{j}} style="padding: 30px; background-color: black;"></button>
+            {% endif %}
+            {% endfor %}
+            <br>
+            {% endfor %}
+        </div>
+        <div class="bottom_btn">
+            <button name="reset">最初からやり直す</button>
+        </div>
+        {% else %}
+        <div class="finish">
+            <h1>クリア</h1>
+        </div>
+        <div class="main_block">
+            {% for i in range(block_data | count) %}
+            {% for j in range(block_data | count) %}
+            {% if block_data[i][j] %}
+            <button type=button style="padding: 30px; background-color: white;"></button>
+            {% else %}
+            <button type=button style="padding: 30px; background-color: black;"></button>
+            {% endif %}
+            {% endfor %}
+            <br>
+            {% endfor %}
+        </div>
+        <div class="bottom_btn">
+            <button name="reset">もう一度プレーする</button>
+        </div>
+        {% endif %}
+    </form>
+</body>
+
+</html>

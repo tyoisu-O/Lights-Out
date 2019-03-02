@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+
+<head>
+    <link rel="stylesheet" href="{{url_for('static',filename='index.css')}}">
+    <script src="{{url_for('static',filename='index.js')}}"></script>
+</head>
+
+<body>
+    <nav>
+        <h1>Hello,Flask!</h1>
+        <ul>
+            <!-- {% for x in index %} -->
+            <li>
+                <a href="{{url_for(x)}}">{{x}}</a>
+            </li>
+            <!-- {% endfor %} -->
+        </ul>
+    </nav>
+</body>
